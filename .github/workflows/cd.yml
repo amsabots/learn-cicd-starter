@@ -34,3 +34,6 @@ jobs:
       - name: Push image to gcloud artifactory
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/platinumlist-1014/notely-ar-repo/notely-prod:latest .
 
+      - name: deploy to cloud run
+        run: cloud run deploy notely-prod --image us-central1-docker.pkg.dev/platinumlist-1014/notely-ar-repo/notely-prod:latest --region us-central1  --allow-unauthenticated --project platinumlist-1014 --max-instances=4
+
