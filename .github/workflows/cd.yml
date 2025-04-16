@@ -41,6 +41,7 @@ jobs:
         run: |
           go install github.com/pressly/goose/v3/cmd/goose@latest
           goose -version # should be at least v3.18.0
+          echo $DATABASE_URL
           chmod +x scripts/migrateup.sh 
           ./scripts/migrateup.sh
 
