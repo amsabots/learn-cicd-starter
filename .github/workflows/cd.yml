@@ -45,8 +45,8 @@ jobs:
 
       - name: Run migrations
         run: |
-          chmod +x scripts/migrateup.sh 
-          ./scripts/migrateup.sh
+          cd sql/schema
+          goose turso $DATABASE_URL up
 
       - name: deploy to cloud run
         run: gcloud run deploy notely-prod --image us-central1-docker.pkg.dev/platinumlist-1014/notely-ar-repo/notely-prod:latest --region us-central1  --allow-unauthenticated --project platinumlist-1014 --max-instances=4
