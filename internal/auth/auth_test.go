@@ -7,33 +7,33 @@ import (
 	"testing"
 )
 
-func TestGetAPIKey(t *testing.T){
+func TestGetAPIKey(t *testing.T) {
 
-	tests := []struct{
+	tests := []struct {
 		key, value, expected, expectedErr string
 	}{
 		{
 			expectedErr: "no authorization header",
 		},
 		{
-			expectedErr : "no authorization header",
-            key: "Authorization",
+			expectedErr: "no authorization header",
+			key:         "Authorization",
 		},
 		{
-			key: "Authorization",
-			value: "-",
+			key:         "Authorization",
+			value:       "-",
 			expectedErr: "malformed authorization header",
 		},
 		{
-			key: "Authorization",
-			value: "Bearer xxxxxxx",
+			key:         "Authorization",
+			value:       "Bearer xxxxxxx",
 			expectedErr: "malformed authorization header",
 		},
 		{
-         key: "Authorization",
-		 value: "ApiKey xxxxxxxx",
-		 expected: "xxxxxxxx",
-		 expectedErr: "not expecting an error",
+			key:         "Authorization",
+			value:       "ApiKey xxxxxxxx",
+			expected:    "xxxxxxxx",
+			expectedErr: "not expecting an error",
 		},
 	}
 
@@ -45,7 +45,7 @@ func TestGetAPIKey(t *testing.T){
 			output, err := GetAPIKey(header)
 
 			if err != nil {
-				if strings.Contains(err.Error(), test.expectedErr){
+				if strings.Contains(err.Error(), test.expectedErr) {
 					return
 				}
 				t.Errorf("Unexpected: TestGetAPIKey: %v\n", err)
